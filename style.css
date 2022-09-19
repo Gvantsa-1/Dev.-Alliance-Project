@@ -1,0 +1,51 @@
+label,
+input,
+select,
+textarea,
+table{
+  cursor: pointer;
+}
+
+.active.container{
+  filter: brightness(.9);
+}
+#closeBtn{
+  position:absolute;
+   bottom: 0px;
+   right:5px
+}
+.popup{
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translatex(-50%);
+  background-color:rgba(98, 130, 143, 0.932);
+  width: 80%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.5);
+  transition: all .7s; 
+  animation: 1s drop;
+}
+.active.popup{
+  visibility: hidden;
+  opacity: 0;
+  top:10%;
+ }
+
+@keyframes drop{
+  0%{
+    top:-100px;
+  }
+  100%{
+   top:50%;
+  }
+}
+
+
+
+
+
