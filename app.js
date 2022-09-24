@@ -41,8 +41,7 @@ var form = `<form action=""   id="user_form" class="row col-12 mt-5 border p-5" 
   <button id="submitBtn" type="submit" class="btn btn-success  mb-5 mt-5  col-12 fw-bolder shadow p-3" value="submit"  onclick="save()">Save</button>
 </div>
 </form>
-<dialog class ="modal active"class="mt-2 mb-3  h4 border p-4 d-flex justify-content-center" ><div class="h2 d-flex notes_title justify-content-center" name='notes_title'>Notes</div> 
-  <button id="closeBtn" name='warning_btn' type="submit" class="btn  btn-warning  d-flex justify-content-center col-1 fw-bolder shadow p-3 mb-2 mt-2">X</button>
+<dialog class ="modal active"class="mt-2 mb-3  h4 border p-4 d-flex justify-content-center" ><div class="h2 d-flex notes_title justify-content-center" name='notes_title'>Notes</div>
    </dialog>`;
 
    
@@ -168,7 +167,6 @@ function deleteData(index) {
 //popup
 const container_el = document.querySelector('.container');
 const tr_popup_el = document.querySelector(".tr-popup");
-const closeBtn_el=document.querySelector("#closeBtn");
 const notes_el=document.querySelector(".notes");
 const deleteBtn_el=document.querySelector(".deleteBtn");
 const active_el=document.querySelector(".active");
@@ -178,8 +176,7 @@ const showNotes_el=document.getElementById('showNotes');
 const form2_el=document.getElementById('form2');
 const id_el=document.querySelector('#id');
 const dialog_el=document.querySelector('.modal');
-let notes_title_el=document.getElementsByName('notes_title');
-let warning_btn_el=document.getElementsByClassName('warning_btn')
+
 
 
 
@@ -188,7 +185,7 @@ tr_popup_el.addEventListener('click',()=>{
   dialog_el.classList.remove('active');
 
 });
-closeBtn_el.addEventListener('click', ()=>{
+dialog_el.addEventListener('click', ()=>{
   container_el.classList.remove('active');
   dialog_el.classList.add('active');
 });
@@ -196,9 +193,12 @@ closeBtn_el.addEventListener('click', ()=>{
 
 
 
+dialog_el.textContent=`Notes: ${details[1].notes}`
+
+
 
 console.log(dialog_el);
 console.log(notes);
 console.log(localStorage);
-console.log(warning_btn_el);
+
 
