@@ -38,12 +38,17 @@ var form = `<form action=""   id="user_form" class="row col-12 mt-5 border p-5" 
             <span class="h6 text-secondary">Not required</span>
          </div>
          </div>
-  <button id="submitBtn" type="submit" class="btn btn-success  mb-5 mt-5  col-12 fw-bolder shadow p-3" value="submit" onclick="save()">Save</button>
+  <button id="submitBtn" type="submit" class="btn btn-success  mb-5 mt-5  col-12 fw-bolder shadow p-3" value="submit"  onclick="save()">Save</button>
 </div>
-</form>`;
+</form>
+<dialog class ="modal active"class="mt-2 mb-3  h4 border p-4 d-flex justify-content-center" ><div class="h2 d-flex notes_title justify-content-center" name='notes_title'>Notes</div> 
+  <button id="closeBtn" name='warning_btn' type="submit" class="btn  btn-warning  d-flex justify-content-center col-1 fw-bolder shadow p-3 mb-2 mt-2">X</button>
+   </dialog>`;
 
+   
+   let btn_warning_el=document.querySelector('btn-warning');  
 
-function table() {
+function table() { 
     let table = ` <div  class="d-flex justify-content-center col-lg-12 col-md-12 col-xs-12 mt-5 mb-5">
             <table class="table col-12 h6 table-striped fw-bolder table-dark">
          <thead class="col-12">
@@ -63,17 +68,19 @@ function table() {
       
         table = table + `<tr>
         
-      <td onClick=getNotes()>${i+1}</td>
-      <td onClick=getNotes()>${details[i].name}</td>
-      <td onClick=getnotes()>${details[i].surname}</td>
-      <td onClick=getNotes()>${details[i].address}</td>
-      <td onClick=getNotes()>${details[i].dateOfBirth}</td>
-      <td onClick=getNotes()>${details[i].gender}</td>
+      <td id="id">${i+1}</td>
+      <td>${details[i].name}</td>
+      <td>${details[i].surname}</td>
+      <td>${details[i].address}</td>
+      <td>${details[i].dateOfBirth}</td>
+      <td>${details[i].gender}</td>
        <td><button type="button" class=" btn btn-danger" deleteBtn onclick="deleteData(${i})">Delete</button></td>
-      <td id="notes" hidden>${details[i].notes}</td> 
+      <td  hidden id="notes">${details[i].notes}</td> 
    </tr>`;
     };
+   
     table = table+`</tbody>
+    
     </table>`;
     document.getElementById("table").innerHTML = table;
 };
@@ -137,6 +144,7 @@ function save() {
     details.push(data);
     setData();
      table();
+
      
     firstName_el.value = "";
     lastName_el.value = "";
@@ -156,46 +164,41 @@ function deleteData(index) {
     };
 
 
-//popup/*
+
+//popup
 const container_el = document.querySelector('.container');
 const tr_popup_el = document.querySelector(".tr-popup");
 const closeBtn_el=document.querySelector("#closeBtn");
-const popup_el=document.querySelector(".popup");
-const popup_parent=document.querySelector(".popupParent");
 const notes_el=document.querySelector(".notes");
 const deleteBtn_el=document.querySelector(".deleteBtn");
 const active_el=document.querySelector(".active");
 const notes=document.querySelector("#notes");
-const notesPopup=document.querySelector("#notesPopup");
 const section=document.querySelector("section");
+const showNotes_el=document.getElementById('showNotes');
+const form2_el=document.getElementById('form2');
+const id_el=document.querySelector('#id');
+const dialog_el=document.querySelector('.modal');
+let notes_title_el=document.getElementsByName('notes_title');
+let warning_btn_el=document.getElementsByClassName('warning_btn')
+
 
 
 tr_popup_el.addEventListener('click',()=>{
-  getNotes();
   container_el.classList.add('active');
-  popup_el.classList.remove('active');
+  dialog_el.classList.remove('active');
 
 });
 closeBtn_el.addEventListener('click', ()=>{
   container_el.classList.remove('active');
-  popup_el.classList.add('active');
+  dialog_el.classList.add('active');
 });
-function getNotes(){
-}
 
 
 
 
 
- 
-
-
-
-
-
-
- 
-
-
-
+console.log(dialog_el);
+console.log(notes);
+console.log(localStorage);
+console.log(warning_btn_el);
 
