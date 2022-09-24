@@ -29,7 +29,7 @@ table {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transition: all 0.7s;
   animation: 1s drop;
-  border:none;
+  border: none;
 }
 .active.modal {
   visibility: hidden;
@@ -45,4 +45,3 @@ table {
     top: 50%;
   }
 }
-
