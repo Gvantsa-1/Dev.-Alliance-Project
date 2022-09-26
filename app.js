@@ -101,10 +101,10 @@ localStorage.setItem("details", JSON.stringify(details));
 };
 
 function getIdFromTable(e) {
-const dialog_el=document.querySelector('.modal'); // dialog selector
-const element = e.path[1].id // we get here id of the row
-const splitted = element.split('-')[1] //we need second element, id
-dialog_el.textContent=`Notes: ${details[splitted].notes}` //render dynamically
+const dialog_el=document.querySelector('.modal');
+const element = e.path[1].id 
+const splitted = element.split('-')[1] 
+dialog_el.textContent=`Notes: ${details[splitted].notes}` 
 }
 
 
