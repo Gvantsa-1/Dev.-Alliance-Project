@@ -185,6 +185,8 @@ const form2_el=document.getElementById('form2');
 const id_el=document.querySelector('#id');
 const dialog_el=document.querySelector('.modal');
 
+
+
 tr_popup_el.addEventListener('click',()=>{
 container_el.classList.add('active');
 dialog_el.classList.remove('active');
