@@ -41,14 +41,13 @@ var form = `<form action="" id="user_form" class="row col-12 mt-5 border p-5" au
 <button id="submitBtn" type="submit" class="btn btn-success mb-5 mt-5 col-12 fw-bolder shadow p-3" value="submit" onclick="save()">Save</button>
 </div>
 </form>
-<dialog class ="modal active"class="mt-2 mb-3 h4 border p-4 d-flex justify-content-center" ><div class="h2 d-flex notes_title justify-content-center" name='notes_title'>Notes</div>
+<dialog class ="modal active"class="mt-2 mb-3 h4 border p-4 d-flex justify-content-center" >
 </dialog>`;
-
 
 let btn_warning_el=document.querySelector('btn-warning');
 
 function table() {
-let table = ` <div class="d-flex justify-content-center col-lg-12 col-md-12 col-xs-12 mt-5 mb-5">
+let table = `<div class="d-flex justify-content-center col-lg-12 col-md-12 col-xs-12 mt-5 mb-5">
 <table class="table col-12 h6 table-striped fw-bolder table-dark">
 <thead class="col-12">
 <tr class="users" >
@@ -65,7 +64,7 @@ let table = ` <div class="d-flex justify-content-center col-lg-12 col-md-12 col-
 
 for (let i = 0; i < details.length; i++){
 
-table = table + `<tr id=row-${i} onclick="getIdFromTable(event)">
+table = table +  `<tr id=row-${i} onclick="getIdFromTable(event)">
 
 <td id="id">${i+1}</td>
 <td>${details[i].name}</td>
@@ -73,19 +72,18 @@ table = table + `<tr id=row-${i} onclick="getIdFromTable(event)">
 <td>${details[i].address}</td>
 <td>${details[i].dateOfBirth}</td>
 <td>${details[i].gender}</td>
-<td><button type="button" class=" btn btn-danger" deleteBtn onclick="deleteData(${i})">Delete</button></td>
 <td hidden id="notes">${details[i].notes}</td>
-</tr>`;
+<td><button type="button" class=" btn btn-danger delete" deleteBtn  onclick="deleteData(${i})">Delete</button></td></tr>`;
 };
-
 table = table+`</tbody>
+
 
 </table>`;
 document.getElementById("table").innerHTML = table;
 };
 let detailsId = 1;
 document.getElementById("form").innerHTML = form;
-details = [];
+let details = [];
 getData();
 table();
 function getData(){
@@ -99,19 +97,16 @@ setData();
 function setData() {
 localStorage.setItem("details", JSON.stringify(details));
 };
-
+//modal function
 function getIdFromTable(e) {
 const dialog_el=document.querySelector('.modal');
-const element = e.path[1].id 
-const splitted = element.split('-')[1] 
-dialog_el.textContent=`Notes: ${details[splitted].notes}` 
+const element = e.path[1].id ;
+const splitted = element.split('-')[1]; 
+dialog_el.textContent=`Notes: ${details[splitted].notes}`
 }
 
-
 //validate
-
-const maxLength=/^[a-z]{1,35}$/i;
-
+const maxLength=/^[\s\S]{1,35}$/i;
 
 //submit
 function save() {
@@ -121,6 +116,7 @@ let address_el=document.querySelector("#address");
 let dateBirth_el=document.querySelector("#dateOfBirth");
 let gender_el=document.querySelector("#gender");
 let notes_el=document.querySelector("#notes");
+
 if (firstName_el.value == 0) {
 alert("name is Empty!");
 return
@@ -152,24 +148,13 @@ details.push(data);
 setData();
 table();
 
-
 firstName_el.value = "";
 lastName_el.value = "";
 address_el.value = "";
 dateBirth_el.value = "";
 gender_el.value = "";
 notes_el.value = "";
-
-
 };
-
-//delete data
-function deleteData(index) {
-details.splice(index, 1);
-setData();
-table();
-};
-
 
 
 //popup
@@ -179,20 +164,40 @@ const notes_el=document.querySelector(".notes");
 const deleteBtn_el=document.querySelector(".deleteBtn");
 const active_el=document.querySelector(".active");
 const notes=document.querySelector("#notes");
-const section=document.querySelector("section");
-const showNotes_el=document.getElementById('showNotes');
+const row_el=document.querySelector("#row");
+const delete_el=document.querySelector('.delete');
 const form2_el=document.getElementById('form2');
 const id_el=document.querySelector('#id');
 const dialog_el=document.querySelector('.modal');
 
+//delete data
 
+function deleteData(index) {
+  details.splice(index, 1);
+setData();
+table();
+
+};
+
+
+
+
+//popup
 
 tr_popup_el.addEventListener('click',()=>{
 container_el.classList.add('active');
 dialog_el.classList.remove('active');
 
 });
+
 dialog_el.addEventListener('click', ()=>{
 container_el.classList.remove('active');
 dialog_el.classList.add('active');
-});
+})
+
+
+
+
+
+
+
